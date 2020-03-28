@@ -1,32 +1,4 @@
 
-//             //we wrote this : )
-//         function calculatepriceproportion() {
-// //           var amount = document.getElementById('money').value;
-
-// //           var percentages = piechart.getAllSliceSizePercentages();
-          
-//           console.log("here");
-          
-//           var medres = 3;
-//           var lfortunate = 5;
-//           var locbus = 4;
-          
-          
-//           document.getElementById("medres").value = 3;
-//           document.getElementById("lfortunate").value = 4;
-//           document.getElementById("locbus").value = 5;
-          
-          
-//           // console.log(percentages);
-          
-         
-
-
-//         }
-
-// example.js
-const test = document.querySelector('#maney');
-console.log(test);
 (function(){
 
     //IE9+ http://youmightnotneedjquery.com/
@@ -39,15 +11,13 @@ console.log(test);
     }
 
     ready(setupPieChart);
-  
 
-  
 
     function setupPieChart() {
 
 
-        var dimensions = ['Medical Research', 'The Less Fortunate',  'Local Businesses']; //knuth fishery yates was used here previously
-        var randomProportions = [33.33, 33.33, 33.33];//generateRandomProportions(dimensions.length, 0.05);
+        var dimensions = knuthfisheryates2(['walking', 'programming', 'chess', 'eating', 'sleeping']);
+        var randomProportions = generateRandomProportions(dimensions.length, 0.05);
         var proportions = dimensions.map(function(d,i) { return {
             label: d,
             proportion: randomProportions[i],
@@ -105,13 +75,6 @@ console.log(test);
 
             var table = document.getElementById('proportions-table');
             var percentages = piechart.getAllSliceSizePercentages();
-          
-            //test
-            
-            // console.log("percentages");
-            // console.log(percentages);
-            //
-
 
             var labelsRow = '<tr>';
             var propsRow = '<tr>';
@@ -142,50 +105,7 @@ console.log(test);
             }
 
         }
-      
-//         //we wrote this : )
-//         function calculatepriceproportion() {
-// //           var amount = document.getElementById('money').value;
 
-// //           var percentages = piechart.getAllSliceSizePercentages();
-          
-//           console.log("here");
-          
-//           var medres = 3;
-//           var lfortunate = 5;
-//           var locbus = 4;
-          
-          
-//           document.getElementById("medres").value = 3;
-//           document.getElementById("lfortunate").value = 4;
-//           document.getElementById("locbus").value = 5;
-          
-          
-//           // console.log(percentages);
-          
-         
-
-
-//         }
-
-       test.addEventListener('submit', (e) => {
-
-
-            e.preventDefault();
-
-         console.log('there');
-                    test.medres.value = 3;
-            test.lfortunate.value = 4;
-              test.locbus.value = 3;
-
-
-        });
-
-  
-      
-      
-      
-      
         /*
          * Generates n proportions with a minimum percentage gap between them
          */

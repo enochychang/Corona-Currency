@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/style.css">
     
     <!-- import the webpage's javascript file -->
+    <script src="/draggable-piechart.js"></script>
     <script src="/script.js" defer></script>
   </head>  
   <body onload ="closeNav()">
@@ -23,23 +24,43 @@
     <h1>CoronaCurrency</h1>
     
     <p>
-  
-    
-      <img class="left" src="https://cdn.glitch.com/746b0b56-c533-40a9-832f-2decf8f03cef%2Fdefault-pie.png?v=1585344352131" alt="default pie">
-      <form class="right">
+      <div class="left" id="piechart-controls">
+        <canvas id="piechart" width="400" height="400">Your browser is too old!</canvas>
+      <br>
+        <table id="proportions-table"></table>
+      <br>
+
+      <p id="piechart-instructions">
+        Drag the circles or click the buttons to adjust the pie chart. 
+        <br>
+        If a segment has gone, you can get it back by clicking it's '+' button.
+      </p>  
+
+      </div>
+      
+      <form class="right" id = "maney" onsubmit="calculatepriceproportion()"> 
          <label for="Amount">Donation Amount: </label>
          <input type="number" required>
-         <input type="submit" value="Submit">
+         <input type="submit" value="Submit" id="money">
+      
+          <br>
+          <input type="number" id="medres" readonly="readonly" value="0">
+          <br>
+          <input type="number" id="locbus" readonly="readonly" value="0">
+          <br>
+          <input type="number" id="lfortunate" readonly="readonly" value="0">
        </form>
-    </p>
- </div> 
+   
+     </p>   
+</div> 
   
  <div id = "mySidebar" class ="sidebar">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-        <a href="#">Amount</a>
-        <a href="#">Medical supplies</a>
-        <a href="#">Emergency relief</a>
-    </div>
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <a href="#">About</a>
+    <a href="#">Fund medical research</a>
+    <a href="#">Help the less fortunate</a>
+    <a href="#">Help local businesses</a>
+ </div>
         
 
     <!-- include the Glitch button to show what the webpage is about and
@@ -48,16 +69,22 @@
     <script src="https://button.glitch.me/button.js"></script>
    -->
   <!-- script for sidebar buttons-->
-    <script>
-function openNav() {
-  document.getElementById("mySidebar").style.width = "250px";
-  document.getElementById("main").style.marginLeft = "250px";
-}
-     
-function closeNav() {
-  document.getElementById("mySidebar").style.width = "0";
-  document.getElementById("main").style.marginLeft= "0";
-}
+
+<script>
+  function openNav() {
+    document.getElementById("mySidebar").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+  }
+
+  function closeNav() {
+    document.getElementById("mySidebar").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+  }
+  
+  // function calculatepriceproportion(){
+  //   console.log('htmlonly');
+  // }
+ 
 </script>
   
   </body>
