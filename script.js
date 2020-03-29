@@ -50,11 +50,14 @@ console.log(test);
         var randomProportions = [33.33, 33.33, 33.33];//generateRandomProportions(dimensions.length, 0.05);
         var proportions = dimensions.map(function(d,i) { return {
             label: d,
-            proportion: randomProportions[i],
+            proportion: randomProportions[i], 
+
             collapsed: false,
             format: {
+               //color: "#6dd020",
                 label: d.charAt(0).toUpperCase() + d.slice(1) // capitalise first letter
             }
+          
         }});
 
 
@@ -62,13 +65,34 @@ console.log(test);
             canvas: document.getElementById('piechart'),
             radius: 0.9,
             collapsing: true,
-            proportions: proportions,
+            proportions: proportions ,
+      
             drawSegment: drawSegmentOutlineOnly,
             onchange: onPieChartChange
         };
+      console.log("proportions"  + proportions);
+      
+          var setup2 = {canvas: document.getElementById('piechart'), 
+                    radius: 0.9,
+                    collapsing: true,
+                    proportions: [
+        { proportion: 1, format: { color: "#81a2da", label: 'Medical Research'}},
+        { proportion: 1, format: { color: "#aed091", label: 'Less Fortunate'}},
+        { proportion: 1, format: { color: "#f9e58b", label: 'Local Community'}}
+       ],
+                      // drawSegment: drawSegmentOutlineOnly,
+            onchange: onPieChartChange};
+   
 
-        var newPie = new DraggablePiechart(setup);
+       var newPie = new DraggablePiechart(setup2)
+        
 
+     
+//   var newPie2 = new DraggablePiechart({
+// 	        canvas: document.getElementById('piechart2'), 
+// 	        proportions: proportions
+//         });
+      
         function drawSegmentOutlineOnly(context, piechart, centerX, centerY, radius, startingAngle, arcSize, format, collapsed) {
 
             if (collapsed) { return; }
@@ -140,6 +164,20 @@ console.log(test);
             for (i = 0; i < adjust.length; i++) {
                 adjust[i].addEventListener('click', adjustClick);
             }
+          
+          
+            test.addEventListener('submit', (e) => {
+
+
+              e.preventDefault();
+
+        //   console.log('there');
+              test.medres.value = ((percentages[0] * test.donate.value)/100).toFixed(2);
+              test.lfortunate.value = ((percentages[1] * test.donate.value)/100).toFixed(2);
+              test.locbus.value = ((percentages[2] * test.donate.value)/100).toFixed(2);
+           // console.log(test.donate.value);
+
+        });
 
         }
       
@@ -168,18 +206,7 @@ console.log(test);
 
 //         }
 
-       test.addEventListener('submit', (e) => {
-
-
-            e.preventDefault();
-
-         console.log('there');
-                    test.medres.value = 3;
-            test.lfortunate.value = 4;
-              test.locbus.value = 3;
-
-
-        });
+     
 
   
       
@@ -234,6 +261,8 @@ console.log(test);
     }
 
 })();
+
+
 
 
 
